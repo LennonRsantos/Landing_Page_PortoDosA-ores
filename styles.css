@@ -1,0 +1,174 @@
+/* ==========================================================================
+   Porto dos Açores — Estilos Customizados
+   ========================================================================== */
+
+:root {
+  --ink: #0B2027;
+  --azulejo: #1B4B66;
+  --coral: #C1602C;
+  --cream: #FBF7EE;
+  --sand: #F4EAD3;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+h1, h2, h3, .font-display {
+  font-family: 'Fraunces', serif;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Divisor em concha */
+.scallop-top {
+  position: relative;
+}
+
+.scallop-top::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  background-image: radial-gradient(circle at 12px 0, transparent 13px, var(--scallop-color, var(--cream)) 13.5px);
+  background-size: 24px 24px;
+  background-repeat: repeat-x;
+  transform: translateY(-100%);
+}
+
+/* Textura sutil de maré */
+.tide-texture {
+  background-image:
+    repeating-linear-gradient(100deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 90px),
+    repeating-linear-gradient(20deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 60px);
+}
+
+/* Selo "Maré de hoje" */
+.tide-stamp {
+  border: 1.5px dashed rgba(251, 247, 238, 0.55);
+  transform: rotate(-2deg);
+}
+
+/* Indicador Dinâmico do Ponto de Status */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.status-dot.bg-emerald-500 {
+  animation: pulse-green 2s infinite;
+}
+
+.status-dot.bg-rose-500 {
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+}
+
+/* Tabs do Cardápio */
+.menu-tab {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid rgba(251, 247, 238, 0.2);
+  color: rgba(251, 247, 238, 0.8);
+  transition: all 0.2s ease;
+}
+
+.menu-tab:hover {
+  border-color: rgba(251, 247, 238, 0.5);
+  color: var(--cream);
+}
+
+.menu-tab[aria-selected="true"] {
+  background: var(--coral);
+  color: #fff;
+  border-color: var(--coral);
+}
+
+/* Cards de Galeria e Avaliações */
+.gallery-card {
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.gallery-card img {
+  transition: transform 0.5s ease;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Header & Mobile Menu */
+#mobile-menu {
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+
+.header-shadow {
+  box-shadow: 0 8px 30px -12px rgba(11, 32, 39, 0.35);
+}
+
+/* Foco para acessibilidade */
+a:focus-visible, button:focus-visible {
+  outline: 2.5px solid var(--coral);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Reveal em Scroll */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+::selection {
+  background: var(--coral);
+  color: #fff;
+}
